@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flip the Switch — AI for PM Teams</title>
+  <meta name="description" content="A 1-week intensive workshop that takes your entire product team from AI novice to AI-powered. Real workflows. Real tools. Real results." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #0F172A;
+      --teal:  #00C28B;
+      --light: #F4F6F9;
+      --mid:   #8A94A6;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    /* ── Nav ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      border-bottom: 2px solid var(--teal);
+    }
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      color: var(--mid);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--teal);
+      color: var(--navy) !important;
+      font-weight: 700 !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 13px !important;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* ── Hero ──────────────────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      padding: 100px 5% 90px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 5px;
+      background: var(--teal);
+    }
+    .hero-inner {
+      max-width: 760px;
+    }
+    .hero-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--teal);
+    }
+    .hero-sub {
+      font-size: 20px;
+      color: var(--mid);
+      margin-bottom: 40px;
+      max-width: 580px;
+      line-height: 1.5;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-ghost {
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--teal); }
+    .hero-rule {
+      width: 60px;
+      height: 3px;
+      background: var(--teal);
+      margin: 56px 0 0;
+    }
+
+    /* ── Stats bar ─────────────────────────────────────────────── */
+    .stats {
+      background: var(--teal);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+    .stat {
+      flex: 1;
+      max-width: 240px;
+      padding: 28px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(0,0,0,0.08);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--navy);
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+
+    /* ── Section base ──────────────────────────────────────────── */
+    section { padding: 80px 5%; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 18px;
+      color: var(--mid);
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 56px;
+    }
+    .inner { max-width: 1100px; margin: 0 auto; }
+
+    /* ── What you get ──────────────────────────────────────────── */
+    .what { background: var(--light); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      border: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .card-icon svg { width: 22px; height: 22px; }
+    .card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ── Schedule ──────────────────────────────────────────────── */
+    .schedule { background: var(--white); }
+    .days { display: flex; flex-direction: column; gap: 0; max-width: 760px; }
+    .day {
+      display: flex;
+      gap: 0;
+      position: relative;
+    }
+    .day:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 27px;
+      top: 56px;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .day-num {
+      width: 56px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 4px;
+    }
+    .day-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .day-content {
+      padding: 12px 0 40px 28px;
+    }
+    .day-theme {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+    .day-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .day-desc { font-size: 14px; color: var(--mid); line-height: 1.6; }
+    .day-hw {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--navy);
+      background: var(--light);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-weight: 500;
+    }
+    .day-hw::before {
+      content: '→';
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    /* ── Starter kit ───────────────────────────────────────────── */
+    .kit { background: var(--navy); }
+    .kit .section-title { color: var(--white); }
+    .kit .section-sub { color: var(--mid); }
+    .kit .section-label { color: var(--teal); }
+    .kit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .kit-item {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+    .kit-item-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .kit-item-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .kit-item-desc { font-size: 13px; color: var(--mid); }
+
+    /* ── Pricing ───────────────────────────────────────────────── */
+    .pricing { background: var(--light); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 960px;
+    }
+    .price-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px 28px;
+      border: 1.5px solid var(--border);
+      position: relative;
+    }
+    .price-card.featured {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0,194,139,0.1);
+    }
+    .price-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--teal);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .price-size {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+    .price-amount {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-note { font-size: 12px; color: var(--mid); margin-bottom: 20px; }
+    .price-features { list-style: none; }
+    .price-features li {
+      font-size: 13px;
+      color: var(--navy);
+      padding: 5px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .price-features li::before {
+      content: '✓';
+      color: var(--teal);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Who it's for ──────────────────────────────────────────── */
+    .who { background: var(--white); }
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .who-card {
+      border-left: 3px solid var(--teal);
+      padding: 4px 0 4px 24px;
+    }
+    .who-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .who-card p { font-size: 14px; color: var(--mid); line-height: 1.6; }
+
+    /* ── CTA ───────────────────────────────────────────────────── */
+    .cta-section {
+      background: var(--navy);
+      text-align: center;
+      padding: 100px 5%;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--teal);
+    }
+    .cta-section h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 18px;
+      color: var(--mid);
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-note {
+      font-size: 13px;
+      color: var(--mid);
+      margin-top: 16px;
+    }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer p { font-size: 13px; color: var(--mid); }
+    footer a { color: var(--mid); text-decoration: none; }
+    footer a:hover { color: var(--teal); }
+
+    /* ── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .stats { flex-wrap: wrap; }
+      .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
+      .hero { padding: 64px 5% 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">Flip the <span>Switch</span></div>
+  <div class="nav-links">
+    <a href="#schedule">Schedule</a>
+    <a href="#kit">Starter Kit</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#apply" class="nav-cta">Apply Now</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">AI for PM Teams · 1-Week Intensive</div>
+    <h1>Your team goes from<br><em>AI curious</em><br>to AI powered.</h1>
+    <p class="hero-sub">A focused, hands-on workshop that gives your entire product team real AI workflows — not theory. In five days.</p>
+    <div class="hero-actions">
+      <a href="#apply" class="btn-primary">Apply for the Next Cohort</a>
+      <a href="#schedule" class="btn-ghost">See the Schedule</a>
+    </div>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Days of live training</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">12</div>
+    <div class="stat-label">Pre-built PM skills</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2wk</div>
+    <div class="stat-label">Async Slack support</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">0</div>
+    <div class="stat-label">Coding required</div>
+  </div>
+</div>
+
+<!-- What you get -->
+<section class="what" id="what">
+  <div class="inner">
+    <div class="section-label">What You Get</div>
+    <h2 class="section-title">Everything your team needs<br>to actually use AI at work.</h2>
+    <p class="section-sub">Not a course. Not a certification. A working system your team builds and leaves with.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#00C28B" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+          </svg>
+        </div>
+        <h3>The Starter Kit</h3>
+        <p>A pre-built AI workspace — folder structure, templates, and 12 PM-specific skills — ready to use from day one. Yours to keep and customize.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#00C28B" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <h3>Real Workflows</h3>
+        <p>PRDs from voice memos. Decks from rough notes. Automated morning briefs. Clickable prototypes from ideas. Workflows you'll actually use.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#00C28B" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+        </div>
+        <h3>Dedicated Support</h3>
+        <p>A private Slack channel for your team with async support throughout the week and into week two. No one gets left behind.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#00C28B" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <h3>Brand-Ready Output</h3>
+        <p>Every document and deck generated respects your brand. Update the brand guidelines once — every future output uses them automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Schedule -->
+<section class="schedule" id="schedule">
+  <div class="inner">
+    <div class="section-label">The 5-Day Schedule</div>
+    <h2 class="section-title">One hour a day.<br>Permanent workflow change.</h2>
+    <p class="section-sub">Sessions run over lunch — flexible to your team's schedule. Each day builds on the last.</p>
+    <div class="days">
+
+      <div class="day">
+        <div class="day-num">
+          <div class="day-circle">D1</div>
+        </div>
+        <div class="day-content">
+          <div class="day-theme">Day One</div>
+          <div class="day-title">The Harness</div>
+          <div class="day-desc">How your AI workspace is structured — files, skills, and the wiki that gets smarter as you work. Every team member sets up their personal profile and builds their first real workflow.</div>
+          <div class="day-hw">Homework: Build your personal morning brief</div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-num">
+          <div class="day-circle">D2</div>
+        </div>
+        <div class="day-content">
+          <div class="day-theme">Day Two</div>
+          <div class="day-title">Repeat Workflows</div>
+          <div class="day-desc">Automate the tasks you do every day — morning briefs, competitor research, news pulls — so your AI workspace is already working before you sit down.</div>
+          <div class="day-hw">Homework: Set up one recurring automated research task</div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-num">
+          <div class="day-circle">D3</div>
+        </div>
+        <div class="day-content">
+          <div class="day-theme">Day Three</div>
+          <div class="day-title">Decks & Presentations</div>
+          <div class="day-desc">Generate and update presentations from raw notes, with your brand baked in. Optionally generate slide images locally — no subscriptions, no uploads.</div>
+          <div class="day-hw">Homework: Rebuild or update a real deck you own</div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-num">
+          <div class="day-circle">D4</div>
+        </div>
+        <div class="day-content">
+          <div class="day-theme">Day Four</div>
+          <div class="day-title">PRDs & Docs</div>
+          <div class="day-desc">Turn voice memos and brain dumps into structured PRDs, meeting summaries, stakeholder updates, and discovery docs. Messy input is fine — that's the point.</div>
+          <div class="day-hw">Homework: Voice memo a feature idea → generate a full PRD</div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-num">
+          <div class="day-circle">D5</div>
+        </div>
+        <div class="day-content">
+          <div class="day-theme">Day Five</div>
+          <div class="day-title">Proof of Concept</div>
+          <div class="day-desc">Concept to clickable prototype in under an hour. No design handoffs, no code. Generate a prototype brief and a prompt you can drop directly into v0.dev.</div>
+          <div class="day-hw">Homework: Build a PoC of anything</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Starter Kit -->
+<section class="kit" id="kit">
+  <div class="inner">
+    <div class="section-label">The Starter Kit</div>
+    <h2 class="section-title">Your team inherits a dialed-in system.<br>Not a blank cursor.</h2>
+    <p class="section-sub">Delivered as a ready-to-use workspace. Every skill, template, and folder is pre-built. You customize, not construct.</p>
+    <div class="kit-grid">
+      <div class="kit-item">
+        <div class="kit-item-label">Skill</div>
+        <div class="kit-item-name">/morning-brief</div>
+        <div class="kit-item-desc">Personalized daily summary — runs automatically</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">Skill</div>
+        <div class="kit-item-name">/prd</div>
+        <div class="kit-item-desc">Voice memo or notes → structured PRD</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">Skill</div>
+        <div class="kit-item-name">/deck</div>
+        <div class="kit-item-desc">Notes → polished branded .pptx</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">Skill</div>
+        <div class="kit-item-name">/prototype</div>
+        <div class="kit-item-desc">Concept → clickable prototype brief + v0 prompt</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">Skill</div>
+        <div class="kit-item-name">/discovery-summary</div>
+        <div class="kit-item-desc">Folder of docs → formatted discovery doc</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">Skill</div>
+        <div class="kit-item-name">/competitive-research</div>
+        <div class="kit-item-desc">Research and summarize competitor activity</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">Skill</div>
+        <div class="kit-item-name">/stakeholder-update</div>
+        <div class="kit-item-desc">Status → clean email, Slack, or written update</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">Skill</div>
+        <div class="kit-item-name">/repeat-workflows</div>
+        <div class="kit-item-desc">Set up recurring automated tasks via cron</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">Template</div>
+        <div class="kit-item-name">Branded Deck</div>
+        <div class="kit-item-desc">6 slide layouts, your colors and fonts</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">Template</div>
+        <div class="kit-item-name">PRD</div>
+        <div class="kit-item-desc">Problem → goals → requirements → metrics</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">Template</div>
+        <div class="kit-item-name">Roadmap</div>
+        <div class="kit-item-desc">Now / Next / Later — honest and opinionated</div>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-label">System</div>
+        <div class="kit-item-name">Auto Wiki</div>
+        <div class="kit-item-desc">Self-building knowledge base — never edit manually</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing" id="pricing">
+  <div class="inner">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Priced to fit your<br>team's training budget.</h2>
+    <p class="section-sub">No procurement needed. Director and VP-level approval only. One flat price per cohort, tiered by team size.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-size">1–5 people</div>
+        <div class="price-amount">$3,500</div>
+        <div class="price-note">per cohort</div>
+        <ul class="price-features">
+          <li>5 live sessions</li>
+          <li>Full starter kit</li>
+          <li>2 weeks Slack support</li>
+          <li>Brand template setup</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Most popular</div>
+        <div class="price-size">6–10 people</div>
+        <div class="price-amount">$5,000</div>
+        <div class="price-note">per cohort</div>
+        <ul class="price-features">
+          <li>5 live sessions</li>
+          <li>Full starter kit</li>
+          <li>2 weeks Slack support</li>
+          <li>Brand template setup</li>
+          <li>Priority async support</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-size">11–15 people</div>
+        <div class="price-amount">$7,500</div>
+        <div class="price-note">per cohort</div>
+        <ul class="price-features">
+          <li>5 live sessions</li>
+          <li>Full starter kit</li>
+          <li>2 weeks Slack support</li>
+          <li>Brand template setup</li>
+          <li>Priority async support</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-size">16–20 people</div>
+        <div class="price-amount">$9,500</div>
+        <div class="price-note">per cohort</div>
+        <ul class="price-features">
+          <li>5 live sessions</li>
+          <li>Full starter kit</li>
+          <li>2 weeks Slack support</li>
+          <li>Brand template setup</li>
+          <li>Priority async support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Who it's for -->
+<section class="who">
+  <div class="inner">
+    <div class="section-label">Who It's For</div>
+    <h2 class="section-title">Built for product teams<br>who are serious about speed.</h2>
+    <p class="section-sub">Not for individuals dabbling with AI. For leaders who want their whole team working differently by Friday.</p>
+    <div class="who-grid">
+      <div class="who-card">
+        <h3>Directors & VPs of Product</h3>
+        <p>You want your team moving faster. You're tired of watching AI tools collect dust because no one has a real workflow. This is the fastest way to change that.</p>
+      </div>
+      <div class="who-card">
+        <h3>Product Managers</h3>
+        <p>You spend too much time on documents that should take minutes. After this week, most of that work is automated. You focus on the thinking — not the formatting.</p>
+      </div>
+      <div class="who-card">
+        <h3>Teams starting from zero</h3>
+        <p>No AI experience required. The starter kit is pre-built. You don't need to know how to prompt, code, or configure anything. You just need to show up.</p>
+      </div>
+      <div class="who-card">
+        <h3>Teams with scattered AI usage</h3>
+        <p>Everyone's using ChatGPT differently with inconsistent results. This gives your whole team a shared system, shared vocabulary, and shared outputs that actually look good.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="apply">
+  <h2>Ready to flip the switch?</h2>
+  <p>Cohorts are small by design. Fill out the intake form and we'll be in touch within 24 hours.</p>
+  <a href="mailto:hello@producthang.com?subject=Flip the Switch — Workshop Inquiry" class="btn-primary">Apply for the Next Cohort</a>
+  <p class="cta-note">Or email us directly at hello@producthang.com</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 Flip the Switch · AI for PM Teams</p>
+  <p>
+    A <a href="#">ProductHang</a> offering ·
+    Powered by <a href="#">Mohara</a>
+  </p>
+</footer>
+
+</body>
+</html>
