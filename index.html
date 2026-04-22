@@ -64,6 +64,43 @@
     }
     .nav-cta:hover { opacity: 0.9; }
 
+    /* ── Price card CTA buttons ────────────────────────────────── */
+    .price-card-cta {
+      display: block;
+      text-align: center;
+      margin-top: 24px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .price-card-cta.primary {
+      background: var(--teal);
+      color: var(--navy);
+    }
+    .price-card-cta.primary:hover { opacity: 0.88; }
+    .price-card-cta.secondary {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid var(--border);
+    }
+    .price-card-cta.secondary:hover { border-color: var(--teal); color: var(--teal); }
+    .price-badge-dark {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
     /* ── Hero ──────────────────────────────────────────────────── */
     .hero {
       background: var(--navy);
@@ -479,22 +516,22 @@
 <nav>
   <div class="nav-logo">Flip the <span>Switch</span></div>
   <div class="nav-links">
-    <a href="#schedule">Schedule</a>
-    <a href="#kit">Starter Kit</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#apply" class="nav-cta">Apply Now</a>
+    <a href="#what">What's Included</a>
+    <a href="#pricing">Courses</a>
+    <a href="#cohort">Cohort</a>
+    <a href="#pricing" class="nav-cta">Start for $24</a>
   </div>
 </nav>
 
 <!-- Hero -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-label">AI for PM Teams · 1-Week Intensive</div>
-    <h1>Your team goes from<br><em>AI curious</em><br>to AI powered.</h1>
-    <p class="hero-sub">A focused, hands-on workshop that gives your entire product team real AI workflows — not theory. In five days.</p>
+    <div class="hero-label">AI for PMs · Self-Paced Courses &amp; Live Cohorts</div>
+    <h1>Stop managing<br>manually.<br><em>Flip the switch.</em></h1>
+    <p class="hero-sub">A ready-to-run AI workspace for product managers. Real workflows, real outputs, real time saved. Start in under an hour.</p>
     <div class="hero-actions">
-      <a href="#apply" class="btn-primary">Apply for the Next Cohort</a>
-      <a href="#schedule" class="btn-ghost">See the Schedule</a>
+      <a href="#pricing" class="btn-primary">Get the Intro Course — $24</a>
+      <a href="#what" class="btn-ghost">See what's included</a>
     </div>
     <div class="hero-rule"></div>
   </div>
@@ -503,16 +540,16 @@
 <!-- Stats -->
 <div class="stats">
   <div class="stat">
-    <div class="stat-num">5</div>
-    <div class="stat-label">Days of live training</div>
+    <div class="stat-num">&lt;1hr</div>
+    <div class="stat-label">To your first AI workflow</div>
   </div>
   <div class="stat">
     <div class="stat-num">12</div>
     <div class="stat-label">Pre-built PM skills</div>
   </div>
   <div class="stat">
-    <div class="stat-num">2wk</div>
-    <div class="stat-label">Async Slack support</div>
+    <div class="stat-num">$24</div>
+    <div class="stat-label">To get started</div>
   </div>
   <div class="stat">
     <div class="stat-num">0</div>
@@ -714,57 +751,57 @@
 <section class="pricing" id="pricing">
   <div class="inner">
     <div class="section-label">Pricing</div>
-    <h2 class="section-title">Priced to fit your<br>team's training budget.</h2>
-    <p class="section-sub">No procurement needed. Director and VP-level approval only. One flat price per cohort, tiered by team size.</p>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-size">1–5 people</div>
-        <div class="price-amount">$3,500</div>
-        <div class="price-note">per cohort</div>
-        <ul class="price-features">
-          <li>5 live sessions</li>
-          <li>Full starter kit</li>
-          <li>2 weeks Slack support</li>
-          <li>Brand template setup</li>
-        </ul>
-      </div>
+    <h2 class="section-title">Start where it makes<br>sense for you.</h2>
+    <p class="section-sub">Every tier includes the Flip the Switch Starter Kit. Pick your entry point — you can always go deeper.</p>
+    <div class="pricing-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width: 900px;">
+
+      <!-- Intro Course — FEATURED -->
       <div class="price-card featured">
-        <div class="price-badge">Most popular</div>
-        <div class="price-size">6–10 people</div>
-        <div class="price-amount">$5,000</div>
-        <div class="price-note">per cohort</div>
+        <div class="price-badge">Start Here</div>
+        <div class="price-size">Intro Course</div>
+        <div class="price-amount">$24</div>
+        <div class="price-note">one-time · instant access</div>
+        <ul class="price-features">
+          <li>1 guided lesson (~10 min)</li>
+          <li>Full starter kit included</li>
+          <li>Workspace set up &amp; running</li>
+          <li>Your first AI workflow live</li>
+          <li>Self-paced, no prerequisites</li>
+        </ul>
+        <a href="#" class="price-card-cta primary">Get Started — $24</a>
+      </div>
+
+      <!-- Course Pack -->
+      <div class="price-card" style="position:relative;">
+        <div class="price-badge-dark">Best Value</div>
+        <div class="price-size">Course Pack</div>
+        <div class="price-amount">$47</div>
+        <div class="price-note">one-time · instant access</div>
+        <ul class="price-features">
+          <li>4 lessons (~40 min total)</li>
+          <li>Full starter kit included</li>
+          <li>Daily workflow system</li>
+          <li>PRDs from voice memos</li>
+          <li>Decks &amp; stakeholder updates</li>
+        </ul>
+        <a href="#" class="price-card-cta secondary">Get the Pack — $47</a>
+      </div>
+
+      <!-- Cohort -->
+      <div class="price-card" id="cohort">
+        <div class="price-size">Live Cohort</div>
+        <div class="price-amount" style="font-size:26px; line-height:1.2; margin-bottom:8px;">Individual &amp; Team</div>
+        <div class="price-note">coming soon · join the waitlist</div>
         <ul class="price-features">
           <li>5 live sessions</li>
-          <li>Full starter kit</li>
-          <li>2 weeks Slack support</li>
-          <li>Brand template setup</li>
-          <li>Priority async support</li>
+          <li>Full starter kit included</li>
+          <li>Async Slack support</li>
+          <li>Individual pricing available</li>
+          <li>Team discount for 3+ seats</li>
         </ul>
+        <a href="mailto:hello@producthang.com?subject=Flip the Switch — Cohort Waitlist" class="price-card-cta secondary">Join the Waitlist</a>
       </div>
-      <div class="price-card">
-        <div class="price-size">11–15 people</div>
-        <div class="price-amount">$7,500</div>
-        <div class="price-note">per cohort</div>
-        <ul class="price-features">
-          <li>5 live sessions</li>
-          <li>Full starter kit</li>
-          <li>2 weeks Slack support</li>
-          <li>Brand template setup</li>
-          <li>Priority async support</li>
-        </ul>
-      </div>
-      <div class="price-card">
-        <div class="price-size">16–20 people</div>
-        <div class="price-amount">$9,500</div>
-        <div class="price-note">per cohort</div>
-        <ul class="price-features">
-          <li>5 live sessions</li>
-          <li>Full starter kit</li>
-          <li>2 weeks Slack support</li>
-          <li>Brand template setup</li>
-          <li>Priority async support</li>
-        </ul>
-      </div>
+
     </div>
   </div>
 </section>
@@ -799,9 +836,9 @@
 <!-- CTA -->
 <section class="cta-section" id="apply">
   <h2>Ready to flip the switch?</h2>
-  <p>Cohorts are small by design. Fill out the intake form and we'll be in touch within 24 hours.</p>
-  <a href="mailto:hello@producthang.com?subject=Flip the Switch — Workshop Inquiry" class="btn-primary">Apply for the Next Cohort</a>
-  <p class="cta-note">Or email us directly at hello@producthang.com</p>
+  <p>Start with the $24 intro. Your workspace will be running in under an hour.</p>
+  <a href="#pricing" class="btn-primary">Get the Intro Course — $24</a>
+  <p class="cta-note">Want the full cohort experience? <a href="mailto:hello@producthang.com?subject=Flip the Switch — Cohort Waitlist" style="color: var(--teal);">Join the waitlist</a></p>
 </section>
 
 <!-- Footer -->
